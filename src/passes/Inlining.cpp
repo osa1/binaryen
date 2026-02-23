@@ -1496,6 +1496,10 @@ struct Inlining : public Pass {
     auto* func = module->getFunction(name);
     auto& info = infos[name];
 
+    if (func->alwaysInline && !info.hasTryDelegate) {
+      return info.inliningMode = InliningMode::Full;
+    }
+
     if (info.inliningMode != InliningMode::Unknown) {
       return info.inliningMode;
     }

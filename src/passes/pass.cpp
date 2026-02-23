@@ -332,6 +332,7 @@ void PassRegistry::registerPasses() {
   registerPass("nm", "name list", createNameListPass);
   registerPass("name-types", "(re)name all heap types", createNameTypesPass);
   registerPass("no-inline", "mark functions as no-inline", createNoInlinePass);
+  registerPass("inline", "mark functions as inline", createInlinePass);
   registerPass("no-full-inline",
                "mark functions as no-inline (for full inlining only)",
                createNoFullInlinePass);

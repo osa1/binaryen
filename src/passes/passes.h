@@ -104,6 +104,7 @@ Pass* createMultiMemoryLoweringWithBoundsChecksPass();
 Pass* createNameListPass();
 Pass* createNameTypesPass();
 Pass* createNoInlinePass();
+Pass* createInlinePass();
 Pass* createNoFullInlinePass();
 Pass* createNoPartialInlinePass();
 Pass* createOnceReductionPass();

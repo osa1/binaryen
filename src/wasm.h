@@ -2336,6 +2336,8 @@ public:
   bool noFullInline = false;
   bool noPartialInline = false;
 
+  bool alwaysInline = false;
+
   // Methods
   Signature getSig() { return type.getHeapType().getSignature(); }
   Type getParams() { return getSig().params; }

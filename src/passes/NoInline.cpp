@@ -66,6 +66,21 @@ struct NoInline : public Pass {
   }
 };
 
+struct Inline : public Pass {
+  void run(Module* module) override {
+    std::string pattern =
+      getArgument(name, "Usage usage:  wasm-opt --" + name + "=WILDCARD");
+
+    for (auto& func : module->functions) {
+      if (!String::wildcardMatch(pattern, func->name.toString())) {
+        continue;
+      }
+
+      func->alwaysInline = true;
+    }
+  }
+};
+
 } // anonymous namespace
 
 Pass* createNoInlinePass() { return new NoInline(NoInlineMode::Both); }
@@ -73,5 +88,7 @@ Pass* createNoFullInlinePass() { return new NoInline(NoInlineMode::Full); }
 Pass* createNoPartialInlinePass() {
   return new NoInline(NoInlineMode::Partial);
 }
+
+Pass* createInlinePass() { return new Inline(); }
 
 } // namespace wasm
